@@ -1,0 +1,384 @@
+-- Check lương nhân viên
+CREATE TRIGGER CHECKLUONGNV ON [NHAN_VIEN]
+AFTER INSERT, UPDATE
+AS 
+BEGIN
+	DECLARE @LUONG MONEY
+	SELECT @LUONG = mucluong FROM inserted 
+
+	IF @LUONG > ANY (SELECT mucluong FROM NHAN_VIEN WHERE mavaitro = 'CV01')
+	BEGIN
+		PRINT N'Mức lương nhân viên không được lớn hơn hoặc bằng mức lương quản lý'
+		ROLLBACK
+	END
+END
+
+-- Check lương thấp nhất
+CREATE TRIGGER CHECKLUONGMIN ON NHAN_VIEN
+AFTER INSERT, UPDATE
+AS
+BEGIN
+
+	DECLARE @LUONG MONEY
+	SELECT @LUONG = mucluong FROM inserted
+	IF @LUONG < 4000000
+	BEGIN
+		PRINT N'Lương tối thiểu của nhân viên phải lớn hơn 4 triệu'
+		ROLLBACK
+	END
+END
+
+
+-- Mỗi kho chỉ một quản lý
+CREATE TRIGGER CheckSLQL
+ON NHAN_VIEN
+AFTER INSERT, UPDATE
+AS
+BEGIN
+	DECLARE @MAVAITRO CHAR(4)
+    select @MAVAITRO = mavaitro from inserted
+	IF EXISTS (SELECT 1 FROM inserted I JOIN NHAN_VIEN NV ON NV.makho = NV.makho WHERE I.mavaitro = 'CV01' AND NV.mavaitro = 'CV01')
+	BEGIN
+		PRINT N'Mỗi kho chỉ có một quản lý'
+		ROLLBACK 
+	END
+END
+
+
+
+-- số lượng xuất bé hơn tồn 
+CREATE TRIGGER CheckExportQuantity
+ON CHI_TIET_PHIEU_XUAT
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @SLXUAT INT, @MASP VARCHAR(50);
+
+    SELECT @SLXUAT = soluongxuat, @MASP = MASP FROM INSERTED;
+
+    IF EXISTS (
+        SELECT 1
+        FROM LUU_TRU
+        WHERE MASP = @MASP AND soluonghangton < @SLXUAT
+    )
+    BEGIN
+        PRINT N'Số lượng xuất không được lớn hơn số lượng tồn kho.'
+        ROLLBACK
+    END
+END
+
+
+
+
+
+-- phiếu đặt tạo bởi nhân viên quản lý
+CREATE TRIGGER CheckManagerForOrder
+ON PHIEU_DAT_HANG
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @manv CHAR(4);
+    SELECT @manv = manv FROM INSERTED;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM NHAN_VIEN
+        WHERE manv = @manv AND mavaitro = 'CV01'
+    )
+    BEGIN
+        PRINT N'Phiếu đặt hàng chỉ được tạo bởi nhân viên là quản lý'
+        ROLLBACK
+    END
+END
+
+
+-- số lượng đặt
+CREATE TRIGGER trg_CheckMinQuantityForOrder
+ON CHI_TIET_PHIEU_DAT
+AFTER INSERT, UPDATE
+AS
+BEGIN
+
+    IF EXISTS (
+        SELECT 1
+        FROM INSERTED
+        WHERE soluongdat < 300
+    )
+    BEGIN
+        PRINT N'Số lượng đặt hàng mỗi lần phải lớn hơn hoặc bằng 300.'
+        ROLLBACK
+    END
+END
+
+
+
+
+CREATE TRIGGER trg_CheckMinQuantityForSell
+ON CHI_TIET_PHIEU_XUAT
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM INSERTED
+        WHERE soluongxuat < 100
+    )
+    BEGIN
+        PRINT N'Số lượng hàng bán mỗi lần phải lớn hơn hoặc bằng 100.'
+        ROLLBACK 
+    END
+END
+
+
+
+
+CREATE TRIGGER CheckMaxStorageCapacity
+ON LUU_TRU
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @makho CHAR(3);
+    DECLARE @SLHANGTON INT;
+
+    SELECT @makho = makho FROM INSERTED;
+
+    SELECT @SLHANGTON = SUM(soluonghangton)
+    FROM LUU_TRU
+    WHERE makho = @makho;
+
+    IF @SLHANGTON> 50000
+    BEGIN
+	PRINT N'Sức chứa kho không được vượt quá 50,000 sản phẩm.'
+        ROLLBACK 
+    END
+END
+
+
+
+
+CREATE TRIGGER CheckManagerForProducDelivery
+ON PHIEU_XUAT_HANG
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @manv CHAR(4);
+    SELECT @manv = manv FROM INSERTED;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM NHAN_VIEN
+        WHERE manv = @manv AND mavaitro = 'CV01'
+    )
+    BEGIN
+        PRINT N'Phiếu xuất hàng chỉ được tạo bởi nhân viên là quản lý'
+        ROLLBACK
+    END
+END
+
+
+
+
+CREATE TRIGGER CheckSLNVMoiKho
+ON NHAN_VIEN
+AFTER DELETE, UPDATE
+AS
+BEGIN 
+    DECLARE @makho CHAR(3);
+    DECLARE @soluong INT;
+    SELECT @makho = makho FROM deleted;
+    SELECT @soluong = COUNT(*) FROM NHAN_VIEN nv WHERE @makho = nv.makho 
+    IF @soluong < 5
+    BEGIN
+        PRINT N'Mỗi kho phải có ít nhất 5 nhân viên'
+        ROLLBACK 
+    END
+END
+
+
+
+CREATE TRIGGER CheckNgayDatHang
+ON PHIEU_DAT_HANG
+AFTER UPDATE
+AS
+BEGIN
+    DECLARE @mapd NVARCHAR(50);
+    DECLARE @ngaydat DATE;
+
+    -- Lấy giá trị mapd và ngaydat từ bản ghi vừa chèn hoặc cập nhật
+    SELECT @mapd = mapd, @ngaydat = ngaydat
+    FROM inserted;
+
+    -- Kiểm tra điều kiện
+    IF EXISTS (
+        SELECT 1
+        FROM PHIEU_NHAP_HANG
+        WHERE mapd = @mapd AND ngaynhap < @ngaydat
+    )
+    BEGIN
+        -- Nếu có bản ghi không hợp lệ, rollback transaction
+        PRINT N'Ngày đặt không được lớn hơn ngày nhập'
+        ROLLBACK TRANSACTION;
+    END
+END;
+
+
+
+CREATE TRIGGER CheckNgayNhapHang
+ON PHIEU_NHAP_HANG
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @mapd NVARCHAR(50);
+    DECLARE @ngaynhap DATE;
+
+    SELECT @mapd = mapd, @ngaynhap = ngaynhap
+    FROM inserted;
+
+    -- Kiểm tra điều kiện cho tất cả các bản ghi trong bảng inserted
+    IF EXISTS (
+        SELECT 1
+        FROM PHIEU_DAT_HANG d 
+        WHERE @ngaynhap < d.ngaydat AND mapd = @mapd
+    )
+    BEGIN
+        -- Nếu có bản ghi không hợp lệ, rollback transaction
+        PRINT N'Ngày nhập không được nhỏ hơn ngày đặt'
+        ROLLBACK TRANSACTION;
+    END
+END;
+
+
+
+
+CREATE TRIGGER CheckSoluongdat
+ON CHI_TIET_PHIEU_DAT
+AFTER UPDATE
+AS
+BEGIN
+    DECLARE @mapd CHAR(20);
+    DECLARE @masp CHAR(10);
+    DECLARE @soluongdat INT;
+    DECLARE @tongsoluongnhap INT;
+
+    -- Lấy thông tin từ bảng INSERTED
+    SELECT @mapd = mapd, @masp = masp
+    FROM INSERTED;
+
+    -- Lấy số lượng đã đặt cho sản phẩm trong bảng CTPD
+    SELECT @soluongdat = soluongdat
+    FROM CHI_TIET_PHIEU_DAT
+    WHERE mapd = @mapd AND masp = @masp;
+
+
+    -- Tính tổng số lượng nhập của sản phẩm trong bảng CTPN
+    SELECT @tongsoluongnhap = SUM(soluongdat)
+    FROM CHI_TIET_PHIEU_NHAP ctpn, CHI_TIET_PHIEU_DAT
+    WHERE mapd = @mapd AND ctpn.MASP = @masp
+    GROUP BY mapd, ctpn.MASP;
+
+
+    -- Kiểm tra điều kiện, nếu soluongdat < tongsoluongnhap thì không cho phép thay đổi
+    IF @soluongdat < @tongsoluongnhap
+    BEGIN
+        PRINT N'Không thể thay đổi! Số lượng đã đặt nhỏ hơn tổng số lượng nhập.';
+        ROLLBACK;  -- Hủy bỏ thao tác nếu điều kiện không thỏa mãn
+    END
+END
+
+
+
+CREATE TRIGGER trg_CheckTongSoLuongNhap
+ON CHI_TIET_PHIEU_NHAP
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    DECLARE @masp CHAR(10);
+    DECLARE @SLNHAP INT;
+    DECLARE @SLDAT INT;
+    DECLARE @tongsoluongnhap INT;
+    DECLARE @mapd CHAR(20);
+
+    -- Lấy dữ liệu từ bảng INSERTED
+    SELECT @masp = masp, @SLNHAP = soluongnhap
+    FROM INSERTED;
+
+    -- Lấy mã phiếu đặt (mapd) từ bảng CTPD thông qua masp
+    SELECT @mapd = mapd
+    FROM CHI_TIET_PHIEU_DAT
+    WHERE masp = @masp;
+
+    -- Tính tổng số lượng nhập của sản phẩm trong bảng CTPN
+    SELECT @tongsoluongnhap = SUM(soluongnhap) 
+    FROM CHI_TIET_PHIEU_NHAP 
+    WHERE masp = @masp 
+    GROUP BY masp;
+
+    -- Lấy số lượng đã đặt cho sản phẩm từ bảng CTPD
+    SELECT @SLDAT = soluongdat
+    FROM CHI_TIET_PHIEU_DAT
+    WHERE mapd = @mapd AND masp = @masp;
+
+    -- Kiểm tra điều kiện
+    IF @tongsoluongnhap > @SLDAT
+    BEGIN
+        PRINT N'Tổng số lượng nhập vượt quá số lượng đã đặt!';
+        ROLLBACK;
+    END
+END
+
+
+
+CREATE TRIGGER CAPNHATSLKHINHAP
+ON CHI_TIET_PHIEU_NHAP
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    -- Khi thêm hoặc cập nhật
+    IF EXISTS (SELECT 1 FROM INSERTED)
+    BEGIN
+        UPDATE LUU_TRU
+        SET soluonghangton = soluonghangton + I.soluongnhap
+        FROM LUU_TRU LT
+        JOIN INSERTED I ON LT.makho = (SELECT makho FROM PHIEU_NHAP_HANG WHERE mapn = I.mapn)
+                        AND LT.masp = I.masp;
+    END
+
+    -- Khi xóa
+    IF EXISTS (SELECT 1 FROM DELETED)
+    BEGIN
+        UPDATE LUU_TRU
+        SET soluonghangton = soluonghangton - D.soluongnhap
+        FROM LUU_TRU LT
+        JOIN DELETED D ON LT.makho = (SELECT makho FROM PHIEU_NHAP_HANG WHERE mapn = D.mapn)
+                        AND LT.masp = D.masp;
+    END
+END
+
+
+
+
+CREATE TRIGGER CAPNHATSLKHIXUAT
+ON CHI_TIET_PHIEU_XUAT
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    -- Khi thêm hoặc cập nhật
+    IF EXISTS (SELECT 1 FROM INSERTED)
+    BEGIN
+        UPDATE LUU_TRU
+        SET soluonghangton = soluonghangton - I.soluongxuat
+        FROM LUU_TRU LT
+        JOIN INSERTED I ON LT.makho = (SELECT makho FROM PHIEU_XUAT_HANG WHERE mapx = I.mapx)
+                        AND LT.masp = I.masp;
+    END
+
+    -- Khi xóa
+    IF EXISTS (SELECT 1 FROM DELETED)
+    BEGIN
+        UPDATE LUU_TRU
+        SET soluonghangton = soluonghangton + D.soluongxuat
+        FROM LUU_TRU LT
+        JOIN DELETED D ON LT.makho = (SELECT makho FROM PHIEU_XUAT_HANG WHERE mapx = D.mapx)
+                        AND LT.masp = D.masp;
+    END
+END

@@ -1,0 +1,158 @@
+-----------------TẠO BẢNG--------------
+
+-- NHÀ CUNG CẤP --
+CREATE TABLE NHA_CUNG_CAP
+(
+	mancc CHAR (5) PRIMARY KEY,
+	tenncc NVARCHAR (40),
+	diachi NVARCHAR (100),
+	sdt CHAR (11),
+	email VARCHAR (40),	
+)
+GO
+-- KHO HÀNG --
+CREATE TABLE KHO_HANG 
+(
+	makho CHAR (3) PRIMARY KEY,
+	diachi NVARCHAR (100)
+)
+GO
+-- THỂ LOẠI --
+CREATE TABLE THE_LOAI
+(
+	matheloai CHAR (4) PRIMARY KEY,
+	theloai NVARCHAR (30)
+)
+GO
+-- SẢN PHẨM --
+CREATE TABLE SAN_PHAM
+(
+	masp CHAR (10) PRIMARY KEY,
+	tensp NVARCHAR (100),
+	matheloai CHAR (4) NOT NULL,
+
+	FOREIGN KEY (matheloai) REFERENCES THE_LOAI (matheloai),
+)
+GO
+-- VAI TRÒ --
+CREATE TABLE VAI_TRO
+(
+	mavaitro CHAR (4) PRIMARY KEY,
+	vaitro NVARCHAR (20)
+)
+GO
+-- NHÂN VIÊN --
+CREATE TABLE NHAN_VIEN
+(
+	manv CHAR(4) PRIMARY KEY, 
+	tennv NVARCHAR (30),
+	gioitinh NVARCHAR(10) CHECK (gioitinh IN (N'Nam', N'Nữ')),
+	mucluong MONEY, 
+	sdt CHAR (11),
+	mavaitro CHAR (4) NOT NULL,
+	makho CHAR (3) NOT NULL,
+
+	CONSTRAINT FK_MVT FOREIGN KEY (mavaitro) REFERENCES VAI_TRO (mavaitro),
+	CONSTRAINT FK_MK FOREIGN KEY (makho) REFERENCES KHO_HANG (makho)
+)
+GO
+
+
+-- LƯU TRỮ --
+CREATE TABLE LUU_TRU
+(
+	makho CHAR (3) NOT NULL,
+	masp CHAR (10) NOT NULL,
+	soluonghangton INT,
+
+	PRIMARY KEY (makho, masp),
+	FOREIGN KEY (makho) REFERENCES KHO_HANG(makho)
+	FOREIGN KEY (masp) REFERENCES SAN_PHAM(masp)
+)
+GO
+-- ĐẠI LÝ --
+CREATE TABLE DAI_LY
+(
+	madl CHAR (10) PRIMARY KEY,
+	tendl NVARCHAR (30),
+	diachi NVARCHAR (100),
+	sdt CHAR (11),
+	email VARCHAR (100),
+)
+GO 
+-- PHIẾU ĐẶT HÀNG --
+CREATE TABLE PHIEU_DAT_HANG 
+(
+	mapd CHAR (20) PRIMARY KEY,
+	ngaydat DATE,
+    mancc CHAR (5) NOT NULL,
+    manv CHAR(4) NOT NULL,
+	FOREIGN KEY (manv) REFERENCES NHAN_VIEN (manv),
+	FOREIGN KEY (mancc) REFERENCES NHA_CUNG_CAP (mancc),
+)
+GO
+-- CHI TIẾT PHIẾU ĐẶT --
+CREATE TABLE CHI_TIET_PHIEU_DAT
+(
+	mapd CHAR (20),
+	masp CHAR (10),
+	soluongdat INT,
+	
+	PRIMARY KEY (mapd, masp),
+    FOREIGN KEY (mapd) REFERENCES PHIEU_DAT_HANG (mapd),
+    FOREIGN KEY (masp) REFERENCES SAN_PHAM (masp),
+)
+GO
+
+-- PHIẾU NHẬP HÀNG --
+CREATE TABLE PHIEU_NHAP_HANG
+(
+	mapn CHAR (12) PRIMARY KEY,
+	ngaynhap DATE,
+	mancc CHAR (5) NOT NULL,
+	manv CHAR (4) NOT NULL,
+	mapd CHAR (20) NOT NULL,
+
+	FOREIGN KEY (mancc) REFERENCES NHA_CUNG_CAP (mancc),
+	FOREIGN KEY (manv) REFERENCES NHAN_VIEN (manv),
+	FOREIGN KEY (mapd) REFERENCES PHIEU_DAT_HANG (mapd)
+)
+GO
+-- CHI TIẾT PHIẾU NHẬP --
+CREATE TABLE CHI_TIET_PHIEU_NHAP
+(
+	mapn CHAR (12) NOT NULL ,
+	masp CHAR (10) NOT NULL,
+	soluongnhap INT,
+	dongianhap	MONEY,
+    PRIMARY KEY (mapn, masp),
+    FOREIGN KEY (mapn) REFERENCES PHIEU_NHAP_HANG (mapn),
+    FOREIGN KEY (masp) REFERENCES SAN_PHAM (masp),
+)
+GO
+
+-- PHIẾU XUẤT HÀNG --
+CREATE TABLE PHIEU_XUAT_HANG
+(
+	mapx CHAR (10) PRIMARY KEY,
+	ngayxuat DATE,
+	madl CHAR (10) NOT NULL,
+	manv CHAR(4) NOT NULL,
+
+	FOREIGN KEY (madl) REFERENCES DAI_LY (madl),
+	FOREIGN KEY (manv) REFERENCES NHAN_VIEN (manv),
+)
+GO
+
+-- CHI TIẾT PHIẾU XUẤT --
+CREATE TABLE CHI_TIET_PHIEU_XUAT 
+(
+	mapx CHAR (10) NOT NULL, 
+	masp CHAR (10) NOT NULL,
+	soluongxuat INT,
+	dongiaban	MONEY,
+	PRIMARY KEY (mapx, masp),
+    FOREIGN KEY (mapx) REFERENCES PHIEU_XUAT_HANG (mapx),
+    FOREIGN KEY (masp) REFERENCES SAN_PHAM (masp),
+)
+GO

@@ -1,0 +1,626 @@
+-----------------THÊM DỮ LIỆU--------------
+-- NHÀ CUNG CẤP --
+INSERT INTO NHA_CUNG_CAP (mancc, tenncc, diachi, sdt, email)  
+VALUES  
+('LOR01', N'LOréal Việt Nam', N'123 Đường Lê Lợi, Quận 1, TP.HCM', '0901234567', 'contact@loreal.vn'),  
+('LOR02', N'LOréal Việt Nam', N'456 Đường Nguyễn Văn Linh, Quận 7, TP.HCM', '0912345678', 'info@loreal.vn'),  
+('LOR03', N'LOréal Việt Nam', N'789 Đường Phạm Văn Đồng, Quận Thủ Đức, TP.HCM', '0923456789', 'support@loreal.vn'),  
+('UNL01', N'Unilever Việt Nam', N'123 Đường Trần Hưng Đạo, Quận 1, TP.HCM', '0909876543', 'contact@unilever.vn'),  
+('UNL02', N'Unilever Việt Nam', N'456 Đường Nguyễn Văn Linh, Quận 7, TP.HCM', '0912345678', 'info@unilever.vn'),  
+('PGN01', N'P&G Việt Nam', N'789 Đường Phạm Văn Đồng, Quận Thủ Đức, TP.HCM', '0923456789', 'pgvietnam@pg.com'),   
+('ESL01', N'Estée Lauder Việt Nam', N'987 Đường Võ Văn Tần, Quận 3, TP.HCM', '0956789012', 'support@esteelauder.vn'),     
+('TBS01', N'The Body Shop Việt Nam', N'555 Đường Lê Quang Định, Quận Gò Vấp, TP.HCM', '0911123456', 'info@thebodyshop.vn'),  
+('TBS02', N'The Body Shop Việt Nam', N'666 Đường Quốc Lộ 13, Quận Thủ Đức, TP.HCM', '0922234567', 'support@thebodyshop.vn'),  
+('MYB01', N'Maybelline Việt Nam', N'777 Đường Nguyễn Văn Linh, Quận 7, TP.HCM', '0933345678', 'info@maybelline.vn'),  
+('MAC01', N'M.A.C Cosmetics Việt Nam', N'888 Đường Cách Mạng Tháng 8, Quận Tân Bình, TP.HCM', '0944456789', 'contact@mac.vn'),  
+('MAC02', N'M.A.C Cosmetics Việt Nam', N'67 Huỳnh Thiện Lộc, Quận Tân Phú, TP.HCM', '0944456721', 'contact@mac.vn'), 
+('TRE01', N'Tresemme Việt Nam', N'141 Đường Nguyễn Đình Chiểu, Quận 3, TP.HCM', '0977789012', 'info@tresemme.vn'),  
+('OLY01', N'Olay Việt Nam', N'161 Đường Điện Biên Phủ, Quận Bình Thạnh, TP.HCM', '0988890123', 'contact@olay.vn'),   
+('ROM01', N'Romand Việt Nam', N'123 Đường Lê Lợi, Quận 1, TP.HCM', '0901234567', 'contact@romand.vn'),   
+('HLB01', N'Hada Labo Việt Nam', N'789 Đường Trần Hưng Đạo, Quận 5, TP.HCM', '0923456789', 'info@hadalabo.vn'),  
+('CER01', N'CeraVe Việt Nam', N'123 Đường Nguyễn Trãi, Quận 1, TP.HCM', '0909876543', 'contact@cerave.vn'),  
+('LRP01', N'La Roche-Posay Việt Nam', N'456 Đường Lý Thường Kiệt, Quận Tân Bình, TP.HCM', '0912345678', 'support@laroche.vn'); 
+GO
+
+-- NHÂN VIÊN --
+INSERT INTO NHAN_VIEN (manv, tennv, gioitinh, mucluong, sdt, mavaitro, makho)  
+VALUES  
+-- Kho HNM  
+('HNM1', N'Nguyễn Minh Tuấn', N'Nam', 10000000, '0901234567', 'CV01', 'HNM'),  
+('HNM2', N'Trần Thị Lan', N'Nữ', 8000000, '0902345678', 'CV02', 'HNM'),  
+('HNM3', N'Phạm Quang Huy', N'Nam', 7000000, '0903456789', 'CV03', 'HNM'),  
+('HNM4', N'Vũ Hoàng Nam', N'Nam', 7000000, '0903456789', 'CV03', 'HNM'),
+('HNM5', N'Vũ Anh Minh', N'Nam', 6000000, '0903486749', 'CV04', 'HNM'),  
+
+-- Kho QTN  
+('QTN1', N'Lâm Đức Anh', N'Nam', 10000000, '0911234567', 'CV01', 'QTN'),  
+('QTN2', N'Nguyễn Thị Lan Anh', N'Nữ', 8000000, '0912345678', 'CV02', 'QTN'),  
+('QTN3', N'Hồ Minh Duy', N'Nam', 7000000, '0913456379', 'CV03', 'QTN'),
+('QTN4', N'Hồ Anh Thư', N'Nữ', 6000000, '0978456789', 'CV03', 'QTN'),   
+('QTN5', N'Hồ Minh Vũ', N'Nam', 6000000, '0913356759', 'CV04', 'QTN'),      
+
+-- Kho QTD  
+('QTD1', N'Trần Minh Đăng', N'Nam', 10000000, '0921234567', 'CV01', 'QTD'),  
+('QTD2', N'Nguyễn Thị Lệ', N'Nữ', 8000000, '0922345678', 'CV02', 'QTD'),  
+('QTD3', N'Nguyễn Thị Lan Trinh', N'Nữ', 8000000, '0922345678', 'CV02', 'QTD'),  
+('QTD4', N'Vũ Quang Mạnh', N'Nam', 7000000, '0923456789', 'CV03', 'QTD'),  
+('QTD5', N'Phan Minh Quân', N'Nam', 7000000, '0923456789', 'CV03', 'QTD'), 
+('QTD6', N'Nguyễn Đức Cường', N'Nam', 7000000, '0923456789', 'CV04', 'QTD'),  
+
+-- Kho BDN  
+('BDN1', N'Trần Minh Phúc', N'Nam', 10000000, '0931234567', 'CV01', 'BDN'),  
+('BDN2', N'Nguyễn Thị Quyên', N'Nữ', 8000000, '0932345678', 'CV02', 'BDN'),  
+('BDN3', N'Nguyễn Tiến Dũng', N'Nam', 7000000, '0933456789', 'CV03', 'BDN'),  
+('BDN4', N'Lương Quang Cường', N'Nam', 7000000, '0933456789', 'CV03', 'BDN'),  
+('BDN5', N'Lương Kim Phúc', N'Nam', 6000000, '0933486789', 'CV04', 'BDN'), 
+
+-- Kho TDM  
+('TDM1', N'Nguyễn Hữu Nam', N'Nam', 10000000, '0941234567', 'CV01', 'TDM'),  
+('TDM2', N'Trần Minh Hoàng', N'Nữ', 8000000, '0942345678', 'CV02', 'TDM'),  
+('TDM3', N'Vũ Thu Trang', N'Nữ', 8000000, '0942345678', 'CV02', 'TDM'),  
+('TDM4', N'Phan Quang Đăng', N'Nam', 7000000, '0943456789', 'CV03', 'TDM'),
+('TDM5', N'Lê Minh Hiếu', N'Nam', 7000000, '0943456789', 'CV03', 'TDM'), 
+('TDM6', N'Phan Minh Khánh', N'Nam', 7000000, '0943456789', 'CV03', 'TDM'), 
+('TDM7', N'Bùi Hải Nam', N'Nam', 7000000, '0943456789', 'CV04', 'TDM'),
+-- Kho VTU 
+('VTU1', N'Nguyễn Hữu Nam', N'Nam', 10000000, '0941234567', 'CV01', 'VTU'),  
+('VTU2', N'Trần Minh Hoàng', N'Nữ', 8000000, '0942345678', 'CV02', 'VTU'),  
+('VTU3', N'Vũ Thu Trang', N'Nữ', 8000000, '0942345678', 'CV03', 'VTU'),  
+('VTU4', N'Phan Quang Đăng', N'Nam', 7000000, '0943456789', 'CV03', 'VTU'),
+('VTU5', N'Phan Quang Minh', N'Nam', 6000000, '0943452489', 'CV04', 'VTU');
+GO
+
+
+-- VAI TRÒ --
+INSERT INTO VAI_TRO (mavaitro, vaitro)  
+VALUES  
+('CV01', N'Quản lý kho'),   
+('CV02', N'Nhân viên kho'),  
+('CV03', N'Kế toán'),
+('CV04', N'Bảo vệ');
+GO
+-- KHO HÀNG --
+INSERT INTO KHO_HANG (makho, diachi)  
+VALUES  
+('HNM', N'123 Đường Lê Lợi, Quận 1, TP.HCM'), 
+('QTN', N'456 Đường Nguyễn Văn Linh, Quận 7, TP.HCM'),
+('QTD', N'789 Đường Phạm Văn Đồng, Quận Thủ Đức, TP.HCM'), 
+('BDN', N'101 Đường Nguyễn Huệ, TP. Biên Hòa, Đồng Nai'), 
+('TDM', N'112 Đường Lý Thường Kiệt, TP. Thủ Dầu Một, Bình Dương'),  
+('VTU', N'223 Đường Võ Văn Kiệt, TP. Vũng Tàu, Bà Rịa-Vũng Tàu');
+GO
+-- LƯU TRỮ --
+INSERT INTO LUU_TRU (makho, masp, soluonghangton) 
+VALUES
+-- Kho HNM (TP.HCM, Quận 1)
+('HNM', 'ESL-01', 400),
+('HNM', 'LOR-04', 350),
+('HNM', 'HLB-01', 500),
+('HNM', 'TRE-03', 500),
+('HNM', 'ESL-04', 500),
+('HNM', 'TBS-02', 300),
+('HNM', 'ROM-01', 600),
+('HNM', 'MAC-02', 440),
+('HNM', 'UNL-03', 440),
+('HNM', 'LRP-01', 440),
+('HNM', 'OLY-01', 440),
+
+-- Kho QTN (TP.HCM, Quận 7)
+('QTN', 'ROM-01', 750),
+('QTN', 'MAC-04', 540),
+('QTN', 'TRE-03', 300),
+('QTN', 'ROM-02', 360),
+('QTN', 'HLB-02', 500),
+('QTN', 'CER-01', 450),
+('QTN', 'LRP-01', 300),
+
+-- Kho QTD (TP.HCM, Thủ Đức)
+('QTD', 'CER-01', 450),
+('QTD', 'OLY-01', 400),
+('QTD', 'ROM-01', 380),
+('QTD', 'LOR-02', 390),
+('QTD', 'MAC-05', 460),
+('QTD', 'ESL-04', 445),
+('QTD', 'TRE-05', 330),
+('QTD', 'UNL-01', 423),
+
+-- Kho BDN (Biên Hòa, Đồng Nai)
+('BDN', 'ESL-04', 450),
+('BDN', 'TRE-01', 400),
+('BDN', 'ROM-01', 880),
+('BDN', 'LOR-05', 390),
+('BDN', 'MAC-05', 460),
+('BDN', 'UNL-01', 445),
+('BDN', 'MAC-03', 730),
+('BDN', 'HLB-01', 423),
+('BDN', 'ESL-03', 450),
+('BDN', 'CER-02', 400),
+('BDN', 'HLB-02', 380),
+('BDN', 'MAC-02', 390),
+('BDN', 'MYB-02', 460),
+('BDN', 'UNL-02', 445),
+('BDN', 'TRE-02', 423),
+('BDN', 'PGN-01', 450),
+('BDN', 'CER-03', 400),
+('BDN', 'ESL-02', 380),
+('BDN', 'ROM-02', 390),
+('BDN', 'MYB-05', 460),
+('BDN', 'LOR-04', 445),
+
+-- Kho TDM (Thủ Dầu Một, Bình Dương)
+('TDM', 'CER-01', 340),
+('TDM', 'LOR-04', 590),
+('TDM', 'MAC-01', 445),
+('TDM', 'UNL-01', 450),
+('TDM', 'ROM-01', 440),
+('TDM', 'LOR-05', 300),
+('TDM', 'HLB-03', 550),
+('TDM', 'OLY-02', 450),
+('TDM', 'LOR-01', 400),
+('TDM', 'TBS-01', 780),
+('TDM', 'MAC-05', 460),
+
+-- Kho VTU (Vũng Tàu)
+('VTU', 'TRE-02', 810),
+('VTU', 'HLB-03', 620),
+('VTU', 'ESL-04', 590),
+('VTU', 'TBS-02', 620),
+('VTU', 'ESL-01', 450),
+('VTU', 'PGN-03', 465),
+('VTU', 'LRP-03', 380);
+GO
+-- ĐẠI LÝ --
+INSERT INTO DAI_LY (madl, tendl, diachi, sdt, email) 
+VALUES
+-- HASAKI
+('HAS01', 'HASAKI', '123 Nguyễn Văn Cừ, Quận 5, TP.HCM', '0912345678', 'hasaki-tphcm@hasaki.com'),
+('HAS02', 'HASAKI', '456 Lê Lợi, Quận 1, TP.HCM', '0923456789', 'hasaki-tphcm@hasaki.com'),
+('HAS03', 'HASAKI', '789 Võ Văn Kiệt, Biên Hòa, Đồng Nai', '0934567890', 'hasaki-dongnai@hasaki.com'),
+
+-- TG SKINFOOD
+('TGS01', 'TG SKINFOOD', '123 Lý Thường Kiệt, Quận 10, TP.HCM', '0945678901', 'tgskinfood-tphcm@tgskinfood.com'),
+('TGS02', 'TG SKINFOOD', '234 Phạm Văn Đồng, Thủ Đức, TP.HCM', '0956789012', 'tgskinfood-tphcm@tgskinfood.com'),
+
+-- NUTY COSMETICS
+('NUT01', 'NUTY COSMETICS', '101 Nguyễn Oanh, Gò Vấp, TP.HCM', '0967890123', 'nutycosmetics-tphcm@nuty.com'),
+('NUT02', 'NUTY COSMETICS', '505 Nguyễn Thị Minh Khai, Quận 1, TP.HCM', '0978901234', 'nutycosmetics-tphcm@nuty.com'),
+
+-- MINH COSMETICS
+('MIN01', 'MINH COSMETICS', '404 Cách Mạng Tháng Tám, Quận 3, TP.HCM', '0989012345', 'minhcosmetics-tphcm@minhcosmetics.com'),
+('MIN02', 'MINH COSMETICS', '707 Trần Hưng Đạo, Quận 5, TP.HCM', '0990123456', 'minhcosmetics-tphcm@minhcosmetics.com'),
+('MIN03', 'MINH COSMETICS', '15 Lê Lợi, Thủ Dầu Một, Bình Dương', '0911234567', 'minhcosmetics-binhduong@minhcosmetics.com'),
+
+-- DAISYSHOP
+('DAI01', 'DAISYSHOP', '123 Đại Lộ Bình Dương, Thủ Dầu Một, Bình Dương', '0961234567', 'daisyshop-binhduong@daisyshop.com'),
+('DAI02', 'DAISYSHOP', '456 Lê Hồng Phong, Vũng Tàu, Bà Rịa - Vũng Tàu', '0972345678', 'daisyshop-vungtau@daisyshop.com'),
+
+-- BEAUTY GARDEN
+('BEA01', 'BEAUTY GARDEN', '1010 Tôn Đức Thắng, Quận 1, TP.HCM', '0922345678', 'beautygarden-tphcm@beautygarden.com'),
+('BEA02', 'BEAUTY GARDEN', '909 Trường Chinh, Tân Bình, TP.HCM', '0933456789', 'beautygarden-tphcm@beautygarden.com'),
+('BEA03', 'BEAUTY GARDEN', '5 Trần Phú, Vũng Tàu, Bà Rịa - Vũng Tàu', '0944567890', 'beautygarden-vungtau@beautygarden.com');
+GO
+-- THỂ LOẠI --
+INSERT INTO THE_LOAI (matheloai, theloai)
+VALUES
+('TL01', N'Skincare'),
+('TL02', N'Makeup'),
+('TL03', N'Fragrance'),
+('TL04', N'Body Care'),
+('TL05', N'Hair Care');
+GO 
+
+-- SẢN PHẨM --
+INSERT INTO SAN_PHAM (masp, tensp, matheloai)
+VALUES
+('LOR-01', N'Shampoo L’Oréal Elvive', 'TL05'),
+('LOR-02', N'Kem Dưỡng L’Oréal Revitalift', 'TL01'),
+('LOR-03', N'Son L’Oréal Infallible', 'TL02'),
+('LOR-04', N'Serum L’Oréal Revitalift', 'TL01'),
+('LOR-05', N'Nước Tẩy Trang L’Oréal Micellar Water', 'TL01'),
+('UNL-01', N'Sữa Tắm Dove Deeply Nourishing', 'TL04'),
+('UNL-02', N'Kem Dưỡng Ban Đêm Ponds', 'TL01'),
+('UNL-03', N'Kem Chống Nắng Vaseline Healthy White', 'TL01'),
+('PGN-01', N'Shampoo Pantene Pro-V', 'TL05'),
+('PGN-02', N'Kem Dưỡng Olay Total Effects', 'TL01'),
+('PGN-03', N'Son Covergirl Outlast', 'TL02'),
+('PGN-04', N'Sữa Tắm Old Spice Swagger', 'TL04'),
+('ESL-01', N'Serum Estée Lauder Advanced Night Repair', 'TL01'),
+('ESL-02', N'Son Estée Lauder Pure Color Envy', 'TL02'),
+('ESL-03', N'Kem Dưỡng Estée Lauder Revitalizing Supreme+', 'TL01'),
+('ESL-04', N'Nước Hoa Estée Lauder Beautiful Magnolia', 'TL03'),
+('TBS-01', N'Body Butter The Body Shop Shea', 'TL04'),
+('TBS-02', N'Sữa Tắm The Body Shop British Rose', 'TL04'),
+('MYB-01', N'Son Maybelline SuperStay Matte Ink', 'TL02'),
+('MYB-02', N'Phấn Nền Maybelline Fit Me', 'TL02'),
+('MYB-03', N'Mascara Maybelline Lash Sensational', 'TL02'),
+('MYB-04', N'Che Khuyết Điểm Maybelline Instant Age Rewind', 'TL02'),
+('MYB-05', N'Kẻ Mắt Maybelline HyperSharp Wing', 'TL02'),
+('MAC-01', N'Son MAC Matte Lipstick', 'TL02'),
+('MAC-02', N'Son MAC Retro Matte', 'TL02'),
+('MAC-03', N'Phấn Nền MAC Studio Fix Powder Plus Foundation', 'TL02'),
+('MAC-04', N'Kẻ Mắt MAC Eye Kohl', 'TL02'),
+('MAC-05', N'Phấn Má Hồng MAC Powder Blush', 'TL02'),
+('TRE-01', N'Dầu Gội Tresemme Keratin Smooth', 'TL05'),
+('TRE-02', N'Dầu Xả Tresemme Keratin Smooth', 'TL05'),
+('TRE-03', N'Dầu Gội Tresemme Color Revitalize', 'TL05'),
+('TRE-04', N'Dầu Xả Tresemme Color Revitalize', 'TL05'),
+('TRE-05', N'Xịt Dưỡng Tóc Tresemme Heat Defense', 'TL05'),
+('OLY-01', N'Kem Dưỡng Olay Regenerist Micro-Sculpting Cream', 'TL01'),
+('OLY-02', N'Serum Dưỡng Da Olay Luminous', 'TL01'),
+('OLY-03', N'Kem Dưỡng Olay Total Effects 7 in One', 'TL01'),
+('ROM-01', N'Son Kem Romand Zero Velvet Tint', 'TL02'),
+('ROM-02', N'Son Thỏi Romand Zero Matte Lipstick', 'TL02'),
+('ROM-03', N'Son Bóng Romand Juicy Lasting Tint', 'TL02'),
+('HLB-01', N'Dưỡng Ẩm Hada Labo Advanced Nourish Lotion', 'TL01'),
+('HLB-02', N'Dưỡng Ẩm Sâu Hada Labo Gokujyun Premium Lotion', 'TL01'),
+('HLB-03', N'Sữa Rửa Mặt Hada Labo Gokujyun Foaming Wash', 'TL01'),
+('HLB-04', N'Toner Hada Labo Gokujyun Super Hyaluronic Acid', 'TL01'),
+('CER-01', N'Sữa Rửa Mặt CeraVe Foaming Cleanser', 'TL01'),
+('CER-02', N'Sữa Dưỡng Thể CeraVe SA Lotion', 'TL04'),
+('CER-03', N'Sữa Tắm CeraVe Hydrating Body Wash', 'TL04'),
+('LRP-01', N'Sữa Rửa Mặt La Roche-Posay Effaclar Gel', 'TL01'),
+('LRP-02', N'Toner La Roche-Posay Effaclar Clarifying Solution', 'TL01'),
+('LRP-03', N'Serum La Roche-Posay Hyalu B5', 'TL01');
+GO
+
+-- PHIẾU XUẤT HÀNG --
+INSERT INTO PHIEU_XUAT_HANG (mapx, ngayxuat, madl, manv) 
+VALUES
+('PX24Q10001', '2024-01-05', 'HAS01', 'HNM1'),
+('PX24Q10002', '2024-01-10', 'BEA02', 'QTN1'),
+('PX24Q10003', '2024-01-15', 'MIN03', 'HNM1'),
+('PX24Q10004', '2024-01-20', 'DAI01', 'QTD1'),
+('PX24Q10005', '2024-01-25', 'TGS01', 'QTD1'),
+('PX24Q10006', '2024-02-01', 'HAS02', 'BDN1'),
+('PX24Q10007', '2024-02-07', 'NUT02', 'BDN1'),
+('PX24Q10008', '2024-02-15', 'BEA03', 'BDN1'),
+('PX24Q10009', '2024-03-20', 'TGS02', 'TDM1'),
+('PX24Q20001', '2024-04-03', 'TGS01', 'HNM1'),
+('PX24Q20002', '2024-04-10', 'DAI01', 'BDN1'),
+('PX24Q20003', '2024-04-15', 'BEA02', 'TDM1'),
+('PX24Q20004', '2024-04-20', 'HAS01', 'HNM1'),
+('PX24Q20005', '2024-04-25', 'TGS02', 'BDN1'),
+('PX24Q20006', '2024-05-02', 'NUT02', 'TDM1'),
+('PX24Q20007', '2024-05-07', 'DAI02', 'VTU1'),
+('PX24Q20008', '2024-05-15', 'BEA03', 'BDN1'),
+('PX24Q20009', '2024-06-20', 'MIN03', 'TDM1'),
+('PX24Q30001', '2024-07-01', 'HAS03', 'VTU1'),
+('PX24Q30002', '2024-07-05', 'DAI02', 'TDM1'),
+('PX24Q30003', '2024-07-15', 'NUT02', 'BDN1'),
+('PX24Q30004', '2024-07-28', 'MIN02', 'VTU1'),
+('PX24Q30005', '2024-08-02', 'DAI01', 'BDN1'),
+('PX24Q30006', '2024-08-07', 'HAS01', 'QTD1'),
+('PX24Q30007', '2024-08-15', 'TGS02', 'BDN1'),
+('PX24Q30008', '2024-08-22', 'MIN03', 'TDM1'),
+('PX24Q30009', '2024-09-05', 'HAS02', 'BDN1'),
+('PX24Q40001', '2024-10-05', 'BEA01', 'TDM1'),
+('PX24Q40002', '2024-10-10', 'TGS02', 'BDN1'),
+('PX24Q40003', '2024-10-15', 'MIN02', 'VTU1'),
+('PX24Q40004', '2024-10-22', 'HAS03', 'QTD1'),
+('PX24Q40005', '2024-10-30', 'NUT02', 'BDN1');
+GO
+
+-- CTPX --
+
+INSERT INTO CHI_TIET_PHIEU_XUAT (mapx, masp, soluongxuat, dongiaban)
+VALUES
+
+-- PX24Q10001
+('PX24Q10001', 'ESL-01', 150, 1500000),
+('PX24Q10001', 'LOR-04', 180, 270000),
+('PX24Q10001', 'HLB-01', 160, 230000),
+
+-- PX24Q10002
+('PX24Q10002', 'ROM-01', 212, 2650000),
+('PX24Q10002', 'MAC-04', 310, 300000),
+
+-- PX24Q10003
+('PX24Q10003', 'TRE-03', 315, 140000),
+('PX24Q10003', 'ESL-04', 210, 2100000),
+('PX24Q10003', 'TBS-02', 120, 170000),
+('PX24Q10003', 'ROM-01', 458, 265000),
+
+-- PX24Q10004
+('PX24Q10004', 'CER-01', 218, 180000),
+
+-- PX24Q10005
+('PX24Q10005', 'OLY-01', 220, 430000),
+('PX24Q10005', 'ROM-01', 120, 265000),
+('PX24Q10005', 'LOR-02', 100, 190000),
+
+-- PX24Q10006
+('PX24Q10006', 'ESL-04', 105, 2100000),
+('PX24Q10006', 'TRE-01', 210, 140000),
+
+-- PX24Q10007
+('PX24Q10007', 'LOR-05', 112, 120000),
+('PX24Q10007', 'MAC-05', 310, 370000),
+
+-- PX24Q10008
+('PX24Q10008', 'UNL-01', 205, 95000),
+('PX24Q10008', 'MAC-03', 180, 520000),
+('PX24Q10008', 'HLB-01', 120, 230000),
+
+-- PX24Q10009
+('PX24Q10009', 'CER-01', 120, 180000),
+('PX24Q10009', 'TBS-01', 150, 240000),
+
+-- PX24Q20001
+('PX24Q20001', 'MAC-02', 180, 450000),
+('PX24Q20001', 'UNL-03', 120, 180000),
+
+-- PX24Q20002
+('PX24Q20002', 'TRE-01', 150, 140000),
+('PX24Q20002', 'ESL-02', 310, 865000),
+('PX24Q20002', 'ROM-01', 180, 265000),
+
+-- PX24Q20003
+('PX24Q20003', 'LOR-04', 212, 270000),
+('PX24Q20003', 'UNL-02', 180, 190000),
+
+-- PX24Q20004
+('PX24Q20004', 'LRP-01', 150, 630000),
+('PX24Q20004', 'OLY-01', 180, 440000),
+
+-- PX24Q20005
+('PX24Q20005', 'TRE-04', 214, 130000),
+('PX24Q20005', 'HLB-03', 120, 180000),
+
+-- PX24Q20006
+('PX24Q20006', 'LOR-01', 200, 240000),
+('PX24Q20006', 'MAC-01', 180, 420000),
+
+-- PX24Q20007
+('PX24Q20007', 'TRE-02', 212, 115000),
+('PX24Q20007', 'HLB-03', 115, 180000),
+
+-- PX24Q20008
+('PX24Q20008', 'ESL-03', 108, 1100000),
+('PX24Q20008', 'CER-02', 129, 240000),
+('PX24Q20008', 'HLB-02', 130, 335000),
+
+-- PX24Q20009
+('PX24Q20009', 'UNL-01', 220, 95000),
+
+-- PX24Q30001
+('PX24Q30001', 'HLB-03', 145, 180000),
+('PX24Q30001', 'ESL-04', 212, 2100000),
+('PX24Q30001', 'TBS-02', 180, 170000),
+
+-- PX24Q30002
+('PX24Q30002', 'ROM-01', 210, 165000),
+('PX24Q30002', 'LOR-05', 218, 120000),
+
+-- PX24Q30003
+('PX24Q30003', 'MAC-02', 180, 450000),
+('PX24Q30003', 'MYB-02', 210, 190000),
+
+-- PX24Q30004
+('PX24Q30004', 'ESL-01', 180, 1500000),
+('PX24Q30004', 'TRE-02', 120, 115000),
+
+-- PX24Q30005
+('PX24Q30005', 'UNL-02', 215, 190000),
+('PX24Q30005', 'ROM-01', 220, 265000),
+
+-- PX24Q30006
+('PX24Q30006', 'MAC-05', 425, 370000),
+
+-- PX24Q30007
+('PX24Q30007', 'TRE-02', 315, 115000),
+('PX24Q30007', 'PGN-01', 320, 150000),
+
+-- PX24Q30008
+('PX24Q30008', 'HLB-03', 215, 180000),
+('PX24Q30008', 'OLY-02', 310, 530000),
+
+-- PX24Q30009
+('PX24Q30009', 'CER-03', 108, 180000),
+('PX24Q30009', 'ESL-02', 150, 865000),
+
+-- PX24Q40001
+('PX24Q40001', 'LOR-01', 200, 240000),
+('PX24Q40001', 'TBS-01', 150, 240000),
+
+-- PX24Q40002
+('PX24Q40002', 'ROM-02', 112, 200000),
+('PX24Q40002', 'MYB-05', 110, 350000),
+
+-- PX24Q40003
+('PX24Q40003', 'PGN-03', 150, 280000),
+
+-- PX24Q40004
+('PX24Q40004', 'ESL-04', 118, 2100000),
+('PX24Q40004', 'TRE-05', 200, 250000),
+
+-- PX24Q40005
+('PX24Q40005', 'LOR-04', 120, 270000),
+('PX24Q40005', 'MAC-03', 132, 520000);
+GO 
+
+
+-- PHIẾU ĐẶT HÀNG --
+INSERT INTO PHIEU_DAT_HANG (mapd, ngaydat, mancc, manv)  
+VALUES  
+('PD24Q10001', '2024-01-15', 'LOR01', 'HNM1'),
+('PD24Q10002', '2024-01-10', 'LOR01', 'TDM1'),
+('PD24Q10003', '2024-01-22', 'MAC01', 'QTD1'),
+('PD24Q10004', '2024-01-18', 'MAC01', 'QTN1'),
+('PD24Q10005', '2024-01-25', 'ESL01', 'TDM1'),
+('PD24Q10006', '2024-01-28', 'ESL01', 'TDM1'),
+('PD24Q10007', '2024-02-10', 'UNL01', 'QTN1'),
+('PD24Q10008', '2024-03-18', 'UNL01', 'TDM1'),
+('PD24Q20001', '2024-04-15', 'TRE01', 'QTN1'),
+('PD24Q20002', '2024-04-15', 'ROM01', 'VTU1'),
+('PD24Q20003', '2024-04-25', 'HLB01', 'TDM1'),
+('PD24Q20004', '2024-04-18', 'TRE01', 'VTU1'),
+('PD24Q20005', '2024-04-29', 'LRP01', 'TDM1'),
+('PD24Q20006', '2024-05-30', 'HLB01', 'VTU1'),
+('PD24Q20007', '2024-05-30', 'OLY01', 'QTN1'),
+('PD24Q30001', '2024-07-10', 'LOR02', 'HNM1'),
+('PD24Q30002', '2024-07-20', 'ESL01', 'TDM1'),
+('PD24Q30003', '2024-08-25', 'MAC01', 'QTD1'),
+('PD24Q30004', '2024-09-25', 'TBS02', 'QTD1'),
+('PD24Q40001', '2024-10-10', 'TRE01', 'BDN1'),
+('PD24Q40002', '2024-10-25', 'HLB01', 'HNM1'),
+('PD24Q40003', '2024-10-30', 'CER01', 'TDM1'),
+('PD24Q40004', '2024-11-05', 'OLY01', 'BDN1'),
+('PD24Q40005', '2024-11-20', 'CER01', 'QTD1');
+GO 
+
+-- CTPD-- 
+INSERT INTO CHI_TIET_PHIEU_DAT (mapd, masp, soluongdat)
+VALUES
+-- PD24Q10001
+('PD24Q10001', 'LOR-01', 700),
+('PD24Q10001', 'LOR-02', 600),
+-- PD24Q10002
+('PD24Q10002', 'LOR-03', 700),
+-- PD24Q10003
+('PD24Q10003', 'MAC-01', 800),
+('PD24Q10003', 'MAC-02', 550),
+-- PD24Q10004
+('PD24Q10004', 'MAC-03', 510),
+-- PD24Q10005
+('PD24Q10005', 'ESL-01', 650),
+('PD24Q10005', 'ESL-02', 510),
+-- PD24Q10006
+('PD24Q10006', 'ESL-03', 820),
+('PD24Q10006', 'ESL-04', 1000),
+-- PD24Q10007
+('PD24Q10007', 'UNL-01', 1200),
+('PD24Q10007', 'UNL-02', 700),
+-- PD24Q10008
+('PD24Q10008', 'UNL-03', 600),
+-- PD24Q20001
+('PD24Q20001', 'TRE-01', 670),
+('PD24Q20001', 'TRE-02', 850),
+-- PD24Q20002
+('PD24Q20002', 'ROM-01', 820),
+-- PD24Q20003
+('PD24Q20003', 'HLB-01', 530),
+-- PD24Q20004
+('PD24Q20004', 'TRE-03', 540),
+('PD24Q20004', 'TRE-05', 925),
+-- PD24Q20005
+('PD24Q20005', 'LRP-01', 710),
+-- PD24Q20006
+('PD24Q20006', 'HLB-02', 615),
+-- PD24Q20007
+('PD24Q20007', 'OLY-01', 720),
+-- PD24Q30001
+('PD24Q30001', 'LOR-04', 925),
+('PD24Q30001', 'LOR-05', 1050),
+-- PD24Q30002
+('PD24Q30002', 'ESL-01', 1010),
+-- PD24Q30003
+('PD24Q30003', 'MAC-04', 1030),
+('PD24Q30003', 'MAC-05', 820),
+('PD24Q30004', 'TBS-01', 940),
+('PD24Q30004', 'TBS-02', 650),
+-- PD24Q40001
+('PD24Q40001', 'TRE-04', 735),
+-- PD24Q40002
+('PD24Q40002', 'HLB-03', 825),
+-- PD24Q40003
+('PD24Q40003', 'CER-01', 515),
+('PD24Q40004', 'OLY-02', 610),
+-- PD24Q40005
+('PD24Q40005', 'CER-01', 740),
+('PD24Q40005', 'CER-02', 830);
+GO 
+
+-- PHIEU NHAP HANG --
+INSERT INTO PHIEU_NHAP_HANG (mapn, ngaynhap, mancc, manv, mapd)  
+VALUES  
+('PN24Q10001_1', '2024-01-15', 'LOR01', 'HNM1', 'PD24Q10001'),
+('PN24Q10001_2', '2024-01-15', 'LOR02', 'HNM1', 'PD24Q10001'),
+('PN24Q10002', '2024-01-10', 'LOR01', 'TDM1', 'PD24Q10002'),
+('PN24Q10003_1', '2024-01-22', 'MAC01', 'QTD1', 'PD24Q10003'),
+('PN24Q10003_2', '2024-01-22', 'MAC02', 'QTD1', 'PD24Q10003'),
+('PN24Q10004', '2024-01-18', 'MAC01', 'QTN1', 'PD24Q10004'),
+('PN24Q10005', '2024-01-25', 'ESL01', 'TDM1', 'PD24Q10005'),
+('PN24Q10006', '2024-01-28', 'ESL01', 'TDM1', 'PD24Q10006'),
+('PN24Q10007', '2024-02-10', 'UNL01', 'QTN1', 'PD24Q10007'),
+('PN24Q10008', '2024-03-18', 'UNL01', 'TDM1', 'PD24Q10008'),
+('PN24Q20001', '2024-04-15', 'TRE01', 'QTN1', 'PD24Q20001'),
+('PN24Q20002', '2024-04-15', 'ROM01', 'VTU1', 'PD24Q20002'),
+('PN24Q20003', '2024-04-25', 'HLB01', 'TDM1', 'PD24Q20003'),
+('PN24Q20004', '2024-04-18', 'TRE01', 'VTU1', 'PD24Q20004'),
+('PN24Q20005', '2024-04-29', 'LRP01', 'TDM1', 'PD24Q20005'),
+('PN24Q20006', '2024-05-30', 'HLB01', 'VTU1', 'PD24Q20006'),
+('PN24Q20007', '2024-05-30', 'OLY01', 'QTN1', 'PD24Q20007'),
+('PN24Q30001', '2024-07-10', 'LOR02', 'HNM1', 'PD24Q30001'),
+('PN24Q30002', '2024-07-20', 'ESL01', 'TDM1', 'PD24Q30002'),
+('PN24Q30003', '2024-08-25', 'MAC01', 'QTD1', 'PD24Q30003'),
+('PN24Q30004_1', '2024-09-25', 'TBS01', 'QTD1', 'PD24Q30004'),
+('PN24Q30004_2', '2024-09-25', 'TBS02', 'QTD1', 'PD24Q30004'),
+('PN24Q40001', '2024-10-10', 'TRE01', 'BDN1', 'PD24Q40001'),
+('PN24Q40002', '2024-10-25', 'HLB01', 'HNM1', 'PD24Q40002'),
+('PN24Q40003', '2024-10-30', 'CER01', 'TDM1', 'PD24Q40003'),
+('PN24Q40004', '2024-11-05', 'OLY01', 'BDN1', 'PD24Q40004'),
+('PN24Q40005', '2024-11-20', 'CER01', 'QTD1', 'PD24Q40005');
+GO 
+
+-- CHI TIẾT PHIẾU NHẬP --
+INSERT INTO CHI_TIET_PHIEU_NHAP (mapn, masp, soluongnhap, dongianhap)
+VALUES
+-- PN24Q10001
+('PN24Q10001_1', 'LOR-01', 700, 200000), 
+('PN24Q10001_2', 'LOR-02', 600, 200000), 
+-- PN24Q10002
+('PN24Q10002', 'LOR-03', 700, 130000),
+-- PN24Q10003
+('PN24Q10003_1', 'MAC-01', 800, 400000), 
+('PN24Q10003_2', 'MAC-02', 550, 420000), 
+-- PN24Q10004
+('PN24Q10004', 'MAC-03', 510, 500000), 
+-- PN24Q10005
+('PN24Q10005', 'ESL-01', 650, 1400000), 
+('PN24Q10005', 'ESL-02', 510, 800000), 
+-- PN24Q10006
+('PN24Q10006', 'ESL-03', 820, 1000000), 
+('PN24Q10006', 'ESL-04', 1000, 2000000), 
+-- PN24Q10007
+('PN24Q10007', 'UNL-01', 1200, 80000), 
+('PN24Q10007', 'UNL-02', 700, 180000), 
+-- PN24Q10008
+('PN24Q10008', 'UNL-03', 600, 150000), 
+-- PN24Q20001
+('PN24Q20001', 'TRE-01', 670, 120000), 
+('PN24Q20001', 'TRE-02', 850, 110000), 
+-- PN24Q20002
+('PN24Q20002', 'ROM-01', 820, 250000), 
+-- PN24Q20003
+('PN24Q20003', 'HLB-01', 530, 200000), 
+-- PN24Q20004
+('PN24Q20004', 'TRE-03',540 , 120000), 
+('PN24Q20004', 'TRE-05', 925, 200000), 
+-- PN24Q20005
+('PN24Q20005', 'LRP-01', 710, 600000), 
+-- PN24Q20006
+('PN24Q20006', 'HLB-02', 615, 300000), 
+-- PN24Q20007
+('PN24Q20007', 'OLY-01', 720, 400000), 
+-- PN24Q30001
+('PN24Q30001', 'LOR-04', 925, 250000), 
+('PN24Q30001', 'LOR-05', 1050, 100000),
+-- PN24Q30002
+('PN24Q30002', 'ESL-01', 1010, 1400000), 
+-- PN24Q30003
+('PN24Q30003', 'MAC-04', 1030, 280000), 
+('PN24Q30003', 'MAC-05', 820, 350000), 
+('PN24Q30004_1', 'TBS-01', 940, 150000),
+('PN24Q30004_2', 'TBS-02', 650, 150000),
+-- PN24Q40001
+('PN24Q40001', 'TRE-04', 735, 120000), 
+-- PN24Q40002
+('PN24Q40002', 'HLB-03', 825, 150000), 
+-- PN24Q40003
+('PN24Q40003', 'CER-01', 515, 170000), 
+('PN24Q40004', 'OLY-02', 610, 500000), 
+-- PN24Q40005
+('PN24Q40005', 'CER-01', 740, 170000), 
+('PN24Q40005', 'CER-02', 830, 220000); 
+
+
